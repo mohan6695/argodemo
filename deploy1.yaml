@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hw2-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hw2deploy
+  template:
+    metadata:
+      labels:
+        app: hw2deploy
+    spec:
+      containers:
+      - name: hw2deploy
+        image: mnarsupa/swe645hw2:v2
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hw2-service
+spec:
+  ports:
+  - port: 8014
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: hw2deploy
+  type: LoadBalancer
