@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: hw2-deploy
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: hw2deploy
